@@ -12,12 +12,12 @@ import {
     View,
 } from 'react-native';
 
-import HomePage from './View/HomePage';
+import TabbarNavigation from './View/TabbarNavigation';
 
 export default class RNDemo extends Component {
     render(){
         return(
-          <HomePage/>
+          <TabbarNavigation/>
         );
     }
 }

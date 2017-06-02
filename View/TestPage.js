@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -8,15 +6,12 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-
-export default class MyPage extends Component {
-
+export default class TestPage extends Component {
     render(){
-        const { params } = this.props.navigation.state;
         return(
             <View style={{flex: 1, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}}>
-                <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
-                    <Text>{params.message}</Text>
+                <TouchableOpacity>
+                    <Text>test text</Text>
                 </TouchableOpacity>
             </View>
         );
