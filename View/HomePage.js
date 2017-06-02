@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import MyPage from './MyPage';
+import CustomButton from './CustomButton';
+import CustomSwitch from './CustomSwitch';
 
 let jsonData=require('./../Data/HomeListData.json');
 
@@ -42,7 +44,7 @@ class Home extends Component {
     renderCell(rowData, sectionID, rowID){
       const { navigate } = this.props.navigation;
       return(
-        <TouchableOpacity onPress={()=>navigate('My', { rowID: rowID })}>
+        <TouchableOpacity onPress={()=>navigate(rowData, { rowID: rowID })}>
           <View style={{flexDirection: 'row', height: 64, justifyContent: 'flex-start', alignItems: 'center'}}>
             <Text style={{marginLeft: 8, fontSize: 16, color: 'green'} }>{rowData}</Text>
           </View>
@@ -95,6 +97,12 @@ const HomePage = StackNavigator({
           headerBackTitle: null,
         }
     },
+    CustomButton: {
+        screen: CustomButton,
+    },
+    CustomSwitch: {
+        screen: CustomSwitch,
+    }
 },{
   mode: 'card'
 },{
