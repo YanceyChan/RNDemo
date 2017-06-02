@@ -12,13 +12,12 @@ import {
     View,
 } from 'react-native';
 
+import TabbarNavigation from './View/TabbarNavigation';
 
 export default class RNDemo extends Component {
     render(){
         return(
-            <View style={{flex: 1, backgroundColor: 'red'}}>
-
-            </View>
+            <TabbarNavigation/>
         );
     }
 }

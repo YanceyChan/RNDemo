@@ -1,11 +1,10 @@
-
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
@@ -48,6 +47,7 @@ const HomePage = StackNavigator({
         navigationOptions: {
           headerTitle: 'Home',
           headerBackTitle: null,
+          headerRight: <Button title="Info" color='#841584'/>,
         }
     },
     My: {
