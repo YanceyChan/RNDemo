@@ -10,14 +10,14 @@ import {
 import { StackNavigator } from 'react-navigation';
 import MyPage from './MyPage';
 
-const listArr = ['Image', 'ListView', '自定义Button', '', '', '', '', '', '', '', '', ''];
+let jsonData=require('./../Data/HomeListData.json');
 
 class Home extends Component {
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(listArr),
+            dataSource: ds.cloneWithRows(jsonData.data),
         };
     };
 
