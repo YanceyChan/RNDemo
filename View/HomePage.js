@@ -4,24 +4,57 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Button
+    Button,
+    ListView
 } from 'react-native';
-
 import { StackNavigator } from 'react-navigation';
 import MyPage from './MyPage';
 
-class Home extends Component {
-    render(){
-        const { navigate } = this.props.navigation;
-        return(
+const listArr = ['Image', 'ListView', '自定义Button', '', '', '', '', '', '', '', '', ''];
 
-            <View style={{flex: 1, backgroundColor: 'yellow', justifyContent: 'center', alignItems: 'center'}}>
-                <TouchableOpacity onPress={()=>navigate('My', { message: 'hello world!' })}>
-                    <Text>click me!</Text>
-                </TouchableOpacity>
-            </View>
+class Home extends Component {
+    constructor(props) {
+        super(props);
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            dataSource: ds.cloneWithRows(listArr),
+        };
+    };
+
+    render(){
+        return(
+            <ListView
+              style={{backgroundColor: 'white'}}
+              dataSource={this.state.dataSource}
+              renderRow={(rowData, sectionID, rowID)=>this.renderCell(rowData, sectionID, rowID)}
+              renderSeparator={()=>this.renderSeparator()}
+            />
+            // const { navigate } = this.props.navigation;
+            // <View style={{flex: 1, backgroundColor: 'yellow', justifyContent: 'center', alignItems: 'center'}}>
+            //     <TouchableOpacity onPress={()=>navigate('My', { message: 'hello world!' })}>
+            //         <Text>click me!</Text>
+            //     </TouchableOpacity>
+            // </View>
+
         );
-    }
+    };
+
+    renderCell(rowData, sectionID, rowID){
+      const { navigate } = this.props.navigation;
+      return(
+        <TouchableOpacity onPress={()=>navigate('My', { rowID: rowID })}>
+          <View style={{flexDirection: 'row', height: 64, justifyContent: 'flex-start', alignItems: 'center'}}>
+            <Text style={{marginLeft: 8, fontSize: 16, color: 'green'} }>{rowData}</Text>
+          </View>
+        </TouchableOpacity>
+      );
+    };
+
+    renderSeparator() {
+      return(
+        <View style={{height: 0.5, backgroundColor: 'gray'}}/>
+      )
+    };
 }
 
 
@@ -48,6 +81,11 @@ const HomePage = StackNavigator({
           headerTitle: 'Home',
           headerBackTitle: null,
           headerRight: <Button title="Info" color='#841584'/>,
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: 'red',
+            height: 64
+          }
         }
     },
     My: {
