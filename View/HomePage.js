@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     TouchableOpacity,
@@ -17,7 +16,7 @@ let jsonData=require('./../Data/HomeListData.json');
 class Home extends Component {
     constructor(props) {
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(jsonData.data),
         };
@@ -52,7 +51,7 @@ class Home extends Component {
       );
     };
 
-    renderSeparator() {
+    static renderSeparator() {
       return(
         <View style={{height: 0.5, backgroundColor: 'gray'}}/>
       )
@@ -107,6 +106,6 @@ const HomePage = StackNavigator({
   mode: 'card'
 },{
   headerMode: 'screen',
-})
+});
 
 export default HomePage;
