@@ -20,7 +20,7 @@ class Home extends Component {
         this.state = {
             dataSource: ds.cloneWithRows(jsonData.data),
         };
-    };
+    }
 
     render(){
         return(
@@ -28,7 +28,7 @@ class Home extends Component {
               style={{backgroundColor: 'white'}}
               dataSource={this.state.dataSource}
               renderRow={(rowData, sectionID, rowID)=>this.renderCell(rowData, sectionID, rowID)}
-              renderSeparator={()=>this.renderSeparator()}
+              renderSeparator={()=>this.renderCellSeparator()}
             />
             // const { navigate } = this.props.navigation;
             // <View style={{flex: 1, backgroundColor: 'yellow', justifyContent: 'center', alignItems: 'center'}}>
@@ -38,7 +38,7 @@ class Home extends Component {
             // </View>
 
         );
-    };
+    }
 
     renderCell(rowData, sectionID, rowID){
       const { navigate } = this.props.navigation;
@@ -49,13 +49,13 @@ class Home extends Component {
           </View>
         </TouchableOpacity>
       );
-    };
+    }
 
-    static renderSeparator() {
+    renderCellSeparator() {
       return(
         <View style={{height: 0.5, backgroundColor: 'gray'}}/>
-      )
-    };
+      );
+    }
 }
 
 
@@ -81,7 +81,7 @@ const HomePage = StackNavigator({
         navigationOptions: {
           headerTitle: 'Home',
           headerBackTitle: null,
-          headerRight: <Button title="Info" color='#841584'/>,
+          headerRight: <Button title="Info" color='#841584' onPress={()=>{}}/>,
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: 'red',
