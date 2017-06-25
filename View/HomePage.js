@@ -79,13 +79,13 @@ const HomePage = StackNavigator({
     Home: {
         screen: Home,
         navigationOptions: {
-          headerTitle: 'Home',
+          // headerTitle: 'Home',
           headerBackTitle: null,
-          headerRight: <Button title="Info" color='#841584' onPress={()=>{}}/>,
-          headerTintColor: 'white',
+          // headerRight: <Button title="Info" color='#841584' onPress={()=>{}}/>,
+          // headerTintColor: 'white',
           headerStyle: {
-            backgroundColor: 'red',
-            height: 64
+            // backgroundColor: 'red',
+            height: 0
           }
         }
     },
@@ -98,6 +98,9 @@ const HomePage = StackNavigator({
     },
     CustomButton: {
         screen: CustomButton,
+        navigationOptions: {
+            header : null
+        }
     },
     CustomSwitch: {
         screen: CustomSwitch,
