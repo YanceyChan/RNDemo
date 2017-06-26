@@ -5,12 +5,12 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-export default class TestPage extends Component {
+export default class MorePage extends Component {
     render(){
         return(
             <View style={{flex: 1, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center'}}>
                 <TouchableOpacity>
-                    <Text>test text</Text>
+                    <Text>More Page</Text>
                 </TouchableOpacity>
             </View>
         );

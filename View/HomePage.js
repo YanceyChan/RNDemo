@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import MyPage from './MyPage';
-import CustomButton from './CustomButton';
-import CustomSwitch from './CustomSwitch';
 
 let jsonData=require('./../Data/HomeListData.json');
 
@@ -96,15 +94,6 @@ const HomePage = StackNavigator({
           headerBackTitle: null,
         }
     },
-    CustomButton: {
-        screen: CustomButton,
-        navigationOptions: {
-            header : null
-        }
-    },
-    CustomSwitch: {
-        screen: CustomSwitch,
-    }
 },{
   mode: 'card'
 },{

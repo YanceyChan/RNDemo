@@ -1,33 +1,47 @@
 import React from 'react';
 import { TabNavigator } from "react-navigation";
 import HomePage from './HomePage';
-import TestPage from './TestPage';
+import VideoPage from '../app/creation/VideoPage';
+import RecordingPage from '../app/edit/RecordingPage';
+import MorePage from '../app/account/MorePage';
 import Icon from "react-native-vector-icons/Ionicons";
 
 const MainScreenNavigator = TabNavigator({
-  Home: {
-    screen: HomePage,
+  Video: {
+    screen: VideoPage,
     navigationOptions:{
-        tabBarLabel: '主页',
+        tabBarLabel: 'Video',
         tabBarIcon: ({ focused, tintColor})=>(
               focused?
-              <Icon name='ios-home' size={30} color='#ca7657'/> :
-                  <Icon name='ios-home-outline' size={30} color='#6e5b25'/>
+              <Icon name='ios-videocam' size={30} color='#ee735c'/> :
+                  <Icon name='ios-videocam-outline' size={30} color='#6e5b25'/>
         ),
     }
 
    },
-  Test: {
-    screen: TestPage,
+  Recording: {
+    screen: RecordingPage,
     navigationOptions:{
-        tabBarLabel: '更多',
+        tabBarLabel: 'recording',
         tabBarIcon: ({ focused, tintColor})=>(
             focused?
-                <Icon name='ios-more' size={30} color='#ca7657'/> :
-                <Icon name='ios-more-outline' size={30} color='#6e5b25'/>
+                <Icon name='ios-recording' size={30} color='#ee735c'/> :
+                <Icon name='ios-recording-outline' size={30} color='#6e5b25'/>
         ),
     }
   },
+    More: {
+        screen: MorePage,
+        navigationOptions:{
+            tabBarLabel: 'more',
+            tabBarIcon: ({ focused, tintColor})=>(
+                focused?
+                    <Icon name='ios-more' size={30} color='#ee735c'/> :
+                    <Icon name='ios-more-outline' size={30} color='#6e5b25'/>
+            ),
+        }
+
+    },
 },{
     tabBarOptions: {
         activeTintColor: '#ca7657', // 文字和图片选中颜色
