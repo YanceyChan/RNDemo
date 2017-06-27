@@ -1,47 +1,47 @@
 import React from 'react';
 import { TabNavigator } from "react-navigation";
-import HomePage from './HomePage';
-import VideoPage from '../app/creation/VideoPage';
-import RecordingPage from '../app/edit/RecordingPage';
-import MorePage from '../app/account/MorePage';
 import Icon from "react-native-vector-icons/Ionicons";
 
-const MainScreenNavigator = TabNavigator({
-  Video: {
-    screen: VideoPage,
-    navigationOptions:{
-        tabBarLabel: 'Video',
-        tabBarIcon: ({ focused, tintColor})=>(
-              focused?
-              <Icon name='ios-videocam' size={30} color='#ee735c'/> :
-                  <Icon name='ios-videocam-outline' size={30} color='#6e5b25'/>
-        ),
-    }
+import CreationPage from '../app/creation/creationIndex';
+import EditPage from '../app/edit/editIndex';
+import AccountPage from '../app/account/accountIndex';
 
-   },
-  Recording: {
-    screen: RecordingPage,
-    navigationOptions:{
-        tabBarLabel: 'recording',
-        tabBarIcon: ({ focused, tintColor})=>(
-            focused?
-                <Icon name='ios-recording' size={30} color='#ee735c'/> :
-                <Icon name='ios-recording-outline' size={30} color='#6e5b25'/>
-        ),
-    }
-  },
-    More: {
-        screen: MorePage,
+
+const MainScreenNavigator = TabNavigator({
+    Creation: {
+        screen: CreationPage,
         navigationOptions:{
-            tabBarLabel: 'more',
+            tabBarLabel: 'Creation',
             tabBarIcon: ({ focused, tintColor})=>(
-                focused?
-                    <Icon name='ios-more' size={30} color='#ee735c'/> :
-                    <Icon name='ios-more-outline' size={30} color='#6e5b25'/>
+                  focused?
+                  <Icon name='ios-videocam' size={30} color='#ee735c'/> :
+                      <Icon name='ios-videocam-outline' size={30} color='#6e5b25'/>
             ),
         }
+     },
+    Edit: {
+        screen: EditPage,
+        navigationOptions:{
+            tabBarLabel: 'Edit',
+            tabBarIcon: ({ focused, tintColor})=>(
+                focused?
+                    <Icon name='ios-recording' size={30} color='#ee735c'/> :
+                    <Icon name='ios-recording-outline' size={30} color='#6e5b25'/>
+            ),
+        }
+      },
+    Account: {
+            screen: AccountPage,
+            navigationOptions:{
+                tabBarLabel: 'Account',
+                tabBarIcon: ({ focused, tintColor})=>(
+                    focused?
+                        <Icon name='ios-more' size={30} color='#ee735c'/> :
+                        <Icon name='ios-more-outline' size={30} color='#6e5b25'/>
+                ),
+            }
 
-    },
+        },
 },{
     tabBarOptions: {
         activeTintColor: '#ca7657', // 文字和图片选中颜色
