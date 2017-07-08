@@ -1,7 +1,7 @@
 'use strict'
 
 import queryString from 'query-string';
-import lodash from 'lodash';
+import _ from 'lodash';
 import config from './config';
 import Mock from 'mockjs';
 

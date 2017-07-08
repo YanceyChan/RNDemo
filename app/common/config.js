@@ -10,7 +10,8 @@ const header = {
 
 const api = {
     base:'http://rapapi.org/mockjs/21386/',
-    creations: 'api/creations'
+    creations: 'api/creations',
+    up: 'api/up',
 }
 
 const config = {

@@ -9,6 +9,7 @@ import {
     Dimensions,
     ActivityIndicator,
     RefreshControl,
+    AlertIOS,
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import request from '../common/request';
@@ -20,6 +21,85 @@ var cachedResults = {
     items: [],
     total:0
 }
+
+class Item extends Component {
+    constructor(props) {
+        super(props);
+        var row = this.props.row;
+        this.state = {
+            up: row.voted,
+            row: row,
+        }
+    }
+
+    _up() {
+        let that = this;
+        var up = !this.state.up
+        var row = this.state.row
+        var url = config.api.base +config.api.up
+
+        var  body = {
+            id : row._id,
+            up: up? 'yes' : 'no',
+            accessToken: 'abcee'
+        }
+
+        request.post(url, body)
+            .then((data)=>{
+                if (data && data.success){
+                    that.setState({
+                        up: up,
+                    })
+                }
+                else  {
+                    AlertIOS.alert('点赞失败！')
+                }
+            })
+            .catch((error)=>{
+                AlertIOS.alert('点赞失败！'+error)
+            })
+    }
+
+    render () {
+        var rowData = this.state.row;
+        return(
+            <TouchableHighlight>
+                <View style={styles.item}>
+                    <Text style={styles.title}>{rowData.title}</Text>
+                    <Image
+                        source={{uri: rowData.thumb}}
+                        style={styles.thumb}
+                    >
+                        <Icon
+                            name='ios-play'
+                            size={28}
+                            style={styles.play} />
+                    </Image>
+                    <View style={styles.itemFooter}>
+                        <View style={styles.handleBox}>
+                            <Icon
+                                name={this.state.up ?'ios-heart':'ios-heart-outline'}
+                                size={28}
+                                style={[styles.up, this.state.up ? null : styles.down]}
+                                onPress={this._up.bind(this)}
+                            />
+                            <Text style={styles.handleText} onPress={this._up.bind(this)}>喜欢</Text>
+                        </View>
+                        <View style={styles.handleBox}>
+                            <Icon
+                                name='ios-chatboxes-outline'
+                                size={28}
+                                style={styles.commentIcon}
+                            />
+                            <Text style={styles.handleText}>评论</Text>
+                        </View>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+}
+
 export default class VideoPage extends Component {
     constructor(props) {
         super(props);
@@ -115,38 +195,7 @@ export default class VideoPage extends Component {
     }
 
     _renderRow(rowData){
-        return <TouchableHighlight>
-                    <View style={styles.item}>
-                        <Text style={styles.title}>{rowData.title}</Text>
-                        <Image
-                            source={{uri: rowData.thumb}}
-                            style={styles.thumb}
-                        >
-                        <Icon
-                            name='ios-play'
-                            size={28}
-                            style={styles.play} />
-                        </Image>
-                        <View style={styles.itemFooter}>
-                            <View style={styles.handleBox}>
-                                <Icon
-                                    name='ios-heart-outline'
-                                    size={28}
-                                    style={styles.up}
-                                />
-                                <Text style={styles.handleText}>喜欢</Text>
-                            </View>
-                            <View style={styles.handleBox}>
-                                <Icon
-                                    name='ios-chatboxes-outline'
-                                    size={28}
-                                    style={styles.commentIcon}
-                                />
-                                <Text style={styles.handleText}>评论</Text>
-                            </View>
-                        </View>
-                    </View>
-                </TouchableHighlight>
+        return <Item row={rowData} />
     }
 
     _hasMore() {
@@ -283,6 +332,10 @@ const styles = StyleSheet.create({
         color: '#333'
     },
     up: {
+        fontSize: 22,
+        color: '#ee735c'
+    },
+    down : {
         fontSize: 22,
         color: '#333'
     },
