@@ -248,9 +248,9 @@ class VideoPage extends Component {
     render(){
         return(
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>列表页面</Text>
-                </View>
+                {/*<View style={styles.header}>*/}
+                    {/*<Text style={styles.headerTitle}>列表页面</Text>*/}
+                {/*</View>*/}
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this._renderRow.bind(this)}
@@ -280,14 +280,17 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f5fcff',
     },
-    header: {
-        paddingTop: 25,
-        paddingBottom: 12,
-        backgroundColor: '#ee735c'
-    },
+    // header: {
+    //     height: 44,
+    //     // paddingTop: 25,
+    //     // paddingBottom: 12,
+    //     justifyContent: 'center',
+    //     alignContent: 'center',
+    //     backgroundColor: '#ee735c'
+    // },
     headerTitle: {
         color: '#fff',
-        fontSize: 16,
+        fontSize: 18,
         textAlign: 'center',
         fontWeight: '600'
     },
@@ -359,24 +362,39 @@ const styles = StyleSheet.create({
 
 })
 
+/**Creation部分的导航设置
+ * Creaction首页：CreationIndex
+ * Creaction详情页：CreationDetail
+ */
+
 const CreationPage = StackNavigator({
     CreationIndex: {
         screen: VideoPage,
         navigationOptions: {
-            // headerTitle: 'Home',
+            header: <View style={{
+                         paddingTop: 20,
+                         height: 64,
+                         justifyContent: 'center',
+                         alignContent: 'center',
+                         backgroundColor: '#ee735c'
+                    }}>
+                        <Text style={styles.headerTitle}>列表页面</Text>
+                    </View>,
+            // headerTitle: '列表页面',
+            // headerTintColor: '#fff',
             headerBackTitle: null,
             // headerRight: <Button title="Info" color='#841584' onPress={()=>{}}/>,
             // headerTintColor: 'white',
-            headerStyle: {
-                // backgroundColor: 'red',
-                height: 0
-            }
+            // headerStyle: {
+            //     // backgroundColor: 'red',
+            //     height: 0
+            // }
         }
     },
     CreationDetail: {
         screen: detail,
         navigationOptions:{
-            headerTitle: 'My',
+            headerTitle: '详情',
             headerBackTitle: null,
         }
     },
