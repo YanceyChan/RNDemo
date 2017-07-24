@@ -14,6 +14,9 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import request from '../common/request';
 import config from '../common/config';
+import detail from './detail';
+
+import { StackNavigator } from 'react-navigation';
 
 let width = Dimensions.get('window').width
 var cachedResults = {
@@ -63,7 +66,7 @@ class Item extends Component {
     render () {
         var rowData = this.state.row;
         return(
-            <TouchableHighlight>
+            <TouchableHighlight onPress={this.props.onSelect}>
                 <View style={styles.item}>
                     <Text style={styles.title}>{rowData.title}</Text>
                     <Image
@@ -100,7 +103,7 @@ class Item extends Component {
     }
 }
 
-export default class VideoPage extends Component {
+class VideoPage extends Component {
     constructor(props) {
         super(props);
         let ds = new ListView.DataSource({
@@ -195,7 +198,7 @@ export default class VideoPage extends Component {
     }
 
     _renderRow(rowData){
-        return <Item row={rowData} />
+        return <Item key={rowData._id} onSelect={()=>this._loadPage(rowData._id)} row={rowData} />
     }
 
     _hasMore() {
@@ -230,6 +233,10 @@ export default class VideoPage extends Component {
         return <ActivityIndicator style={styles.loadingMore}/>
     }
 
+    _loadPage (rowID) {
+        this.props.navigation.navigate('CreationDetail', {'rowID':rowID});
+    }
+
     _onRefresh() {
         if (this.state.isRefreshing || !this._hasMore()){
             return
@@ -237,7 +244,6 @@ export default class VideoPage extends Component {
 
         this._fetchData(0);
     }
-
 
     render(){
         return(
@@ -247,7 +253,7 @@ export default class VideoPage extends Component {
                 </View>
                 <ListView
                     dataSource={this.state.dataSource}
-                    renderRow={this._renderRow}
+                    renderRow={this._renderRow.bind(this)}
                     renderFooter={this._renderFooter.bind(this)}
                     enableEmptySections={true}
                     onEndReached={this._fetchMoreData.bind(this)}
@@ -352,3 +358,32 @@ const styles = StyleSheet.create({
     }
 
 })
+
+const CreationPage = StackNavigator({
+    CreationIndex: {
+        screen: VideoPage,
+        navigationOptions: {
+            // headerTitle: 'Home',
+            headerBackTitle: null,
+            // headerRight: <Button title="Info" color='#841584' onPress={()=>{}}/>,
+            // headerTintColor: 'white',
+            headerStyle: {
+                // backgroundColor: 'red',
+                height: 0
+            }
+        }
+    },
+    CreationDetail: {
+        screen: detail,
+        navigationOptions:{
+            headerTitle: 'My',
+            headerBackTitle: null,
+        }
+    },
+},{
+    mode: 'card'
+},{
+    headerMode: 'screen',
+});
+
+export default CreationPage;

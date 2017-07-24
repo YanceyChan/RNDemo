@@ -14,7 +14,7 @@ const MainScreenNavigator = TabNavigator({
             tabBarLabel: 'Creation',
             tabBarIcon: ({ focused, tintColor})=>(
                   focused?
-                  <Icon name='ios-videocam' size={30} color='#ee735c'/> :
+                      <Icon name='ios-videocam' size={30} color='#ee735c'/> :
                       <Icon name='ios-videocam-outline' size={30} color='#6e5b25'/>
             ),
         }
@@ -42,7 +42,7 @@ const MainScreenNavigator = TabNavigator({
             }
 
         },
-},{
+}, {
     tabBarOptions: {
         activeTintColor: '#ca7657', // 文字和图片选中颜色
         inactiveTintColor: '#6e5b25', // 文字和图片默认颜色

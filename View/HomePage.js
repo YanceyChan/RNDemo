@@ -3,7 +3,6 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Button,
     ListView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
